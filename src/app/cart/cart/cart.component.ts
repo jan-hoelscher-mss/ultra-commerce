@@ -1,37 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from "../../product/services/product.service";
 import { CartService } from "../services/cart.service";
-import { Product } from "../../product/models/product";
+import { select, Store } from '@ngrx/store';
+import { remove, update } from "../services/actions/cart.actions";
+import { Observable, of } from "rxjs";
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit {
+export class CartComponent {
 
   displayedColumns: string[] = ['image', 'title', 'price', 'inputquantity', 'removefromcart'];
-  dataSource:Product[] = [];
-  isLoading = true;
+  dataSource:Observable<any> = of([]);
 
   constructor(
     private productService: ProductService,
-    private cartService: CartService
-  ) { }
-
-  ngOnInit(): void {
-    this.cartService.all().subscribe(products => {
-      this.dataSource = products;
-      console.log("Cart", this.dataSource);
-      this.isLoading = false;
-    })
+    private cartService: CartService,
+    private store: Store<{ cart: any }>
+  ) {
+    this.dataSource = this.store.pipe(select('cart'));
   }
 
   updateProduct(entry: any, quantity: any) {
-    this.cartService.updateProductQuantity(entry.product, quantity);
+    this.store.dispatch(update({product: entry.product, quantity: quantity}));
   }
 
   removeFromCart(entry:any) {
-    this.cartService.removeProduct(entry.product);
+    this.store.dispatch(remove({product: entry.product}));
   }
 }

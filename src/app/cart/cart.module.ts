@@ -4,6 +4,8 @@ import { CartComponent } from './cart/cart.component';
 import { CartRoutingModule } from "./cart-routing.module";
 import { CartService } from "./services/cart.service";
 import { MaterialModule } from "../material/material.module";
+import { StoreModule } from '@ngrx/store';
+import { cartReducer } from "./services/reducers/cart.reducer";
 
 
 
@@ -15,6 +17,7 @@ import { MaterialModule } from "../material/material.module";
     CommonModule,
     CartRoutingModule,
     MaterialModule,
+    StoreModule.forRoot({ cart: cartReducer })
   ],
   providers: [CartService]
 })
