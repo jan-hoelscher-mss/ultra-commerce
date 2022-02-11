@@ -25,8 +25,10 @@ export class CartComponent {
   }
 
   updateProduct(entry: any, quantity: any) {
-    this.store.dispatch(update({product: entry.product, quantity: parseInt(quantity)}));
-    this.toastr.info(entry.product.title, "Product updated");
+    if(quantity.length > 0){
+      this.store.dispatch(update({product: entry.product, quantity: parseInt(quantity)}));
+      this.toastr.info(entry.product.title, "Product updated");
+    }
   }
 
   removeFromCart(entry:any) {
