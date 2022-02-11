@@ -1,0 +1,33 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="image">
+    <th mat-header-cell *matHeaderCellDef> Product Image </th>
+    <td style="text-align: left" mat-cell *matCellDef="let element">
+      <img [src]="element.product.image" style="width: 100px"/>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> Product Name </th>
+    <td style="text-align: left" mat-cell *matCellDef="let element"> {{element.product.title}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef> Price </th>
+    <td style="text-align: left" mat-cell *matCellDef="let element"> {{element.product.price | currency}} </td>
+  </ng-container>
+  <ng-container matColumnDef="inputquantity">
+    <th mat-header-cell *matHeaderCellDef> Quantity </th>
+    <td style="text-align: left" mat-cell *matCellDef="let element">
+      <input #input (keyup)="updateProduct(element, input.value)" type="text" style="margin-left: 30px" [value]="element.quantity">
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="removefromcart">
+    <th mat-header-cell *matHeaderCellDef> Button </th>
+    <td style="text-align: left" mat-cell *matCellDef="let element">
+      <button mat-raised-button (click)="removeFromCart(element)"> Remove </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

@@ -1,0 +1,30 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button mat-button routerLink="/product/list">
+      <mat-icon>arrow_back</mat-icon>
+      Back
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+<mat-card *ngIf="!isLoading">
+  <mat-card-header>
+    <img [src]="product.image" mat-card-avatar />
+    <mat-card-title>{{product.title}}</mat-card-title>
+    <mat-card-subtitle>{{product.category}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="product.image" alt="{{product.title}}">
+  <mat-card-content>
+    <p>{{product.description}}</p>
+    <button mat-raised-button>Buy now for {{product.price | currency}}</button>
+  </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="isLoading"
+          style="display: flex; justify-content: center; align-items: center">
+  <mat-progress-spinner [diameter]="'30'"
+                        mode="indeterminate">
+  </mat-progress-spinner>
+</mat-card>
+

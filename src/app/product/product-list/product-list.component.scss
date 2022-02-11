@@ -1,0 +1,11 @@
+table {
+  width: 100%;
+  //width: 80%;
+  margin: 0em auto;
+  text-align: center;
+  top: 100px;
+}
+tr.mat-row:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}

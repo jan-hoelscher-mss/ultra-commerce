@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { AuthModule } from "./auth/auth.module";
 import { MaterialModule } from "./material/material.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductModule } from "./product/product.module";
+import { CartModule } from "./cart/cart.module";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -14,9 +17,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     MaterialModule,
-    AppRoutingModule,
+    BrowserAnimationsModule,
     AuthModule,
-    BrowserAnimationsModule
+    ProductModule,
+    CartModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

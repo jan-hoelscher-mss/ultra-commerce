@@ -1,13 +1,12 @@
 <mat-card>
   <mat-card-content>
     <form [formGroup]="form" (ngSubmit)="login()">
-      <input type="hidden" name="force-no-autocomplete">
       <h2>Sign in to UltraCommerce</h2>
       <mat-error *ngIf="loginInvalid">
         The username and password were not recognised
       </mat-error>
       <mat-form-field class="full-width-input" appearance="outline">
-        <mat-label>Email</mat-label>
+        <mat-label>User Name</mat-label>
         <input matInput placeholder="Username or Email" formControlName="username" required>
         <mat-error>
           {{form.get('username')?.getError('msg') || 'Please provide a valid email address'}}
