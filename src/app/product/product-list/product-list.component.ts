@@ -3,7 +3,7 @@ import { ProductService } from "../services/product.service";
 import { CartService } from "../../cart/services/cart.service";
 import { Product } from "../models/product";
 import { Store } from '@ngrx/store';
-import { add, remove } from "../../cart/services/actions/cart.actions";
+import { add } from "../../cart/services/actions/cart.actions";
 
 @Component({
   selector: 'app-product-list',
@@ -32,6 +32,5 @@ export class ProductListComponent implements OnInit {
   addToCart(event: any, product: any) {
     event.stopPropagation();
     this.store.dispatch(add({product: product}));
-    //this.cartService.addProduct(product);
   }
 }
