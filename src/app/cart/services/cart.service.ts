@@ -12,9 +12,6 @@ export class CartService {
 
   constructor() {
     this.productList = this.loadCart();
-    if(this.productList == null){
-      //this.productList = [];
-    }
     this.productListSubject.next(this.productList);
   }
 
@@ -27,7 +24,14 @@ export class CartService {
   }
 
   public addProduct(product: any){
-    this.productList.push({product: product, quantity:1})
+    const existingProduct = this.productList.find((p: any) => {
+      return p.product.id == product.id;
+    });
+    if( existingProduct != null ){
+      existingProduct.quantity ++;
+    }else{
+      this.productList.push({product: product, quantity:1})
+    }
     this.productListSubject.next(this.productList);
   }
 
