@@ -10,6 +10,7 @@ import { ProductModule } from "./product/product.module";
 import { CartModule } from "./cart/cart.module";
 import { ProductService } from "./product/services/product.service";
 import { ProductSqlService } from "./product/services/product-sql.service";
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,12 @@ import { ProductSqlService } from "./product/services/product-sql.service";
     ProductModule,
     CartModule,
     AppRoutingModule,
+    ToastrModule.forRoot({
+      disableTimeOut: false,
+      closeButton: true,
+      newestOnTop: true,
+      // positionClass: 'toast-top-full-width'
+    })
   ],
   providers: [{ provide: ProductService, useClass: ProductSqlService }],
   bootstrap: [AppComponent]

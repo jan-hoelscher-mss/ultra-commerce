@@ -4,6 +4,7 @@ import { CartService } from "../../cart/services/cart.service";
 import { Product } from "../models/product";
 import { Store } from '@ngrx/store';
 import { add } from "../../cart/services/actions/cart.actions";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-list',
@@ -18,7 +19,7 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private cartService: CartService,
+    private toastr: ToastrService,
     private store: Store<{ cart: any }>
   ) { }
 
@@ -32,5 +33,6 @@ export class ProductListComponent implements OnInit {
   addToCart(event: any, product: any) {
     event.stopPropagation();
     this.store.dispatch(add({product: product}));
+    this.toastr.info(product.title, "Product added to cart");
   }
 }

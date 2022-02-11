@@ -255,6 +255,6 @@ export class ProductSqlService {
   }
 
   public getProductById(id: number): Observable<Product> {
-    return of(this.products.find(product => product.id = id) || {});
+    return of(this.products.find(product => product.id == id) || {});
   }
 }

@@ -4,6 +4,7 @@ import { CartService } from "../services/cart.service";
 import { select, Store } from '@ngrx/store';
 import { remove, update } from "../services/actions/cart.actions";
 import { Observable, of } from "rxjs";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: 'app-cart',
@@ -17,17 +18,19 @@ export class CartComponent {
 
   constructor(
     private productService: ProductService,
-    private cartService: CartService,
+    private toastr: ToastrService,
     private store: Store<{ cart: any }>
   ) {
     this.dataSource = this.store.pipe(select('cart'));
   }
 
   updateProduct(entry: any, quantity: any) {
-    this.store.dispatch(update({product: entry.product, quantity: quantity}));
+    this.store.dispatch(update({product: entry.product, quantity: parseInt(quantity)}));
+    this.toastr.info(entry.product.title, "Product updated");
   }
 
   removeFromCart(entry:any) {
     this.store.dispatch(remove({product: entry.product}));
+    this.toastr.info(entry.product.title, "Product removed");
   }
 }
