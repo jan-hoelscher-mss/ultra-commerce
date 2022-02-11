@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from "../services/product.service";
 import { CartService } from "../../cart/services/cart.service";
 import { Product } from "../models/product";
+import { Store } from '@ngrx/store';
+import { add, remove } from "../../cart/services/actions/cart.actions";
 
 @Component({
   selector: 'app-product-list',
@@ -16,7 +18,8 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private cartService: CartService
+    private cartService: CartService,
+    private store: Store<{ cart: any }>
   ) { }
 
   ngOnInit(): void {
@@ -28,6 +31,7 @@ export class ProductListComponent implements OnInit {
 
   addToCart(event: any, product: any) {
     event.stopPropagation();
-    this.cartService.addProduct(product);
+    this.store.dispatch(add({product: product}));
+    //this.cartService.addProduct(product);
   }
 }
