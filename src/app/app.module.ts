@@ -8,7 +8,8 @@ import { MaterialModule } from "./material/material.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductModule } from "./product/product.module";
 import { CartModule } from "./cart/cart.module";
-import { HttpClientModule } from "@angular/common/http";
+import { ProductService } from "./product/services/product.service";
+import { ProductSqlService } from "./product/services/product-sql.service";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { HttpClientModule } from "@angular/common/http";
     CartModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [{ provide: ProductService, useClass: ProductSqlService }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
