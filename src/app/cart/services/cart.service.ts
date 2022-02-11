@@ -15,7 +15,7 @@ export class CartService {
     this.productListSubject.next(this.productList);
   }
 
-  public all(): Observable<Product[]> {
+  public all(): Observable<any> {
     return this.productListSubject.pipe(
       tap(data => {
         this.saveCart(data);
