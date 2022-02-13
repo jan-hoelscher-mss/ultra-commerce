@@ -18,7 +18,7 @@
   <ng-container matColumnDef="inputquantity">
     <th mat-header-cell *matHeaderCellDef> Quantity </th>
     <td style="text-align: left" mat-cell *matCellDef="let element">
-      <input #input (keyup)="updateProduct(element, input.value)" type="text" style="margin-left: 30px" [value]="element.quantity">
+      <input #input (blur)="updateProduct(element, input.value)" (keyup.enter)="updateProduct(element, input.value)" type="text" style="margin-left: 30px" [value]="element.quantity">
     </td>
   </ng-container>
   <ng-container matColumnDef="removefromcart">
