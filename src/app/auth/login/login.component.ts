@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
   ) {
     authService.isLoggedIn().subscribe(isLoggedIn => {
-      this.router.navigate(['product/list']);
+      this.router.navigate(['products']);
     });
   }
 
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         this.form.get('password').value,
       ).subscribe( result => {
           this.loading = false;
-          this.router.navigate(['product/list']);
+          this.router.navigate(['products']);
         },
         () => {
           this.loading = false;

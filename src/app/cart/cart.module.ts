@@ -17,7 +17,10 @@ import { cartReducer } from "./services/reducers/cart.reducer";
     CommonModule,
     CartRoutingModule,
     MaterialModule,
-    StoreModule.forRoot({ cart: cartReducer })
+    StoreModule.forRoot({cart: cartReducer})
+  ],
+  exports: [
+    CartComponent
   ],
   providers: [CartService]
 })

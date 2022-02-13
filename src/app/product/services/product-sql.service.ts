@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from "rxjs";
+import { BehaviorSubject, Observable, of, tap } from "rxjs";
 import { Product } from "../models/product";
 
 @Injectable({
@@ -248,10 +248,27 @@ export class ProductSqlService {
       }
     }
   ];
+  private productCategoryList: any = [];
+  private productCategoryListSubject = new BehaviorSubject<any>([]);
+
   constructor() { }
 
   public all(): Observable<Product[]> {
-    return of(this.products);
+    return of(this.products).pipe(
+      tap(products => {
+        products.forEach(product => {
+          if(!this.productCategoryList.includes(product.category)){
+            this.productCategoryList.push(product.category);
+          }
+        });
+        this.productCategoryListSubject.next(this.productCategoryList);
+        return products;
+      })
+    );
+  }
+
+  public getCategories(): Observable<string[]>{
+    return this.productCategoryListSubject;
   }
 
   public getProductById(id: number): Observable<Product> {

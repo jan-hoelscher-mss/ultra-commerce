@@ -1,11 +1,12 @@
 table {
-  width: 100%;
-  //width: 80%;
-  margin: 0em auto;
+  width: 40%;
   text-align: center;
   top: 100px;
 }
 tr.mat-row:hover {
   background-color: lightgray;
   cursor: pointer;
+}
+mat-toolbar {
+  width: 40%;
 }

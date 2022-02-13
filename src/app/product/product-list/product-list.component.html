@@ -1,6 +1,13 @@
 <mat-toolbar >
   <mat-toolbar-row>
-
+    <mat-select (selectionChange)="onCategorySeletion($event)" placeholder="Category">
+      <mat-option value="all" >
+        All
+      </mat-option>
+      <mat-option *ngFor="let category of productService.getCategories() | async" [value]="category" >
+        {{category}}
+      </mat-option>
+    </mat-select>
   </mat-toolbar-row>
 </mat-toolbar>
 
